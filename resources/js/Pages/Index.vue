@@ -19,6 +19,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <BreezeResponsiveNavLink :href="route('blog.add')" :active="route().current('blog.add')">
+                        add blog
+                    </BreezeResponsiveNavLink>
+
+                <a href="/article/add" as="button" class="text-sm text-gray-700">
+                </a>
                 </div>
             </div>
         </div>
@@ -26,7 +32,12 @@
 </template>
 
 <script>
+import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
+
 export default {
+    components: {
+        BreezeResponsiveNavLink,
+    },
     props: {
         articles: Array,
         users: Array,

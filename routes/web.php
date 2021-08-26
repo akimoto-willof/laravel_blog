@@ -28,9 +28,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/articles', 'App\Http\Controllers\ArticlesController@index');
-Route::get('/article/add', 'App\Http\Controllers\ArticlesController@add');
-Route::post('/article/add', 'App\Http\Controllers\ArticlesController@create');
+Route::get('/articles', 'App\Http\Controllers\ArticlesController@index')->name('blog.index');
+Route::get('/article/add', 'App\Http\Controllers\ArticlesController@add')->name('blog.add');
+Route::post('/article/complete', 'App\Http\Controllers\ArticlesController@create')->name('blog.create');
 
 Route::get('/article/edit/{article}', 'App\Http\Controllers\ArticlesController@edit');
 Route::post('/article/update/{article}', 'App\Http\Controllers\ArticlesController@update');

@@ -16,6 +16,9 @@
                     Register
                 </Link>
             </template>
+            <BreezeResponsiveNavLink :href="route('blog.index')" :active="route().current('blog.index')" class="ml-4 text-sm text-gray-700 underline">
+                blog
+            </BreezeResponsiveNavLink>
         </div>
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -178,11 +181,13 @@
 
 <script>
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
 
 export default {
     components: {
       Head,
       Link,
+      BreezeResponsiveNavLink,
     },
     props: {
         canLogin: Boolean,

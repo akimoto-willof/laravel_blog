@@ -21,10 +21,12 @@ class ArticlesController extends Controller
         ]);
     }
 
+
     public function add()
     {
         return Inertia::render('Add');
     }
+
 
     public function create(Request $request)
     {
@@ -34,14 +36,15 @@ class ArticlesController extends Controller
             'user_id' => auth::id(),
             'slug' => $request->title,
         ]);
-
-        return Inertia::render('Add');
+        return  Inertia::render('complete');
     }
+
 
     public function edit(Article $article)
     {
         return Inertia::render('edit', ['article' => $article]);
     }
+
 
     public function update(Request $request, Article $article)
     {

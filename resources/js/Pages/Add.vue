@@ -4,20 +4,22 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <form action="/add" method="post">
+                    <form @submit.prevent="submit">
                         <div class="grid grid-cols-1 gap-6">
                             <label class="block">
                                 <span class="text-gray-700">Title</span>
-                                <input type="text" name="title" class="mt-1 block w-full">
+                                <input type="text" name="title" class="mt-1 block w-full" v-model="form.title">
                             </label>
                             <label class="block">
                                 <span class="text-gray-700">Body</span>
-                                <textarea class="mt-1 block w-full" rows="3" name="body"></textarea>
+                                <textarea class="mt-1 block w-full" rows="3" name="body" v-model="form.body"></textarea>
                             </label>
                             <input type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" value="send">
                         </div>
                     </form>
-
+                    <BreezeResponsiveNavLink :href="route('blog.index')" :active="route().current('blog.index')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-10 rounded focus:outline-none focus:shadow-outline text-center">
+                        back
+                    </BreezeResponsiveNavLink>
                 </div>
             </div>
         </div>
@@ -25,11 +27,27 @@
 </template>
 
 <script>
-export default {
+import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
 
+export default {
+    name: "add",
+    components: {
+      BreezeResponsiveNavLink,
+    },
+    data() {
+        return {
+            form: this.$inertia.form({
+                user_id: '',
+                title: '',
+                slug: '',
+                body: '',
+            })
+        }
+    },
+    methods: {
+        submit() {
+            this.form.post(this.route('blog.create'))
+        }
+    }
 }
 </script>
-
-<style>
-
-</style>
