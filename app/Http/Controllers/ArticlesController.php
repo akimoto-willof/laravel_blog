@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +13,12 @@ class ArticlesController extends Controller
 {
     public function index()
     {
+        $users = User::all();
         $articles = Article::all();
-        return Inertia::render('Index', ['articles' => $articles]);
+        return Inertia::render('Index', [
+            'users' => $users,
+            'articles' => $articles,
+        ]);
     }
 
     public function add()
@@ -31,5 +36,16 @@ class ArticlesController extends Controller
         ]);
 
         return Inertia::render('Add');
+    }
+
+    public function edit(Article $article)
+    {
+        return Inertia::render('edit', ['article' => $article]);
+    }
+
+    public function update(Request $request, Article $article)
+    {
+        $article->fill($request->all())->save();
+        return redirect('/articles');
     }
 }

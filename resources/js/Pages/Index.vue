@@ -3,22 +3,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @CRLF
-                <table class="table-auto">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Updated</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ article }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                    <table class="table-auto">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="article in articles" :key="article.id">
+                                <td>{{ article.title }}</td>
+                                <td>{{ article.slug }}</td>
+                                <td>{{ article.body }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -28,9 +28,9 @@
 <script>
 export default {
     props: {
-        article: Array,
+        articles: Array,
+        users: Array,
     }
-
 }
 </script>
 
