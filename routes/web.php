@@ -32,7 +32,7 @@ Route::get('/articles', 'App\Http\Controllers\ArticlesController@index')->name('
 Route::get('/article/add', 'App\Http\Controllers\ArticlesController@add')->name('blog.add');
 Route::post('/article/complete', 'App\Http\Controllers\ArticlesController@create')->name('blog.create');
 
-Route::get('/article/edit/{article}', 'App\Http\Controllers\ArticlesController@edit');
+Route::get('/article/edit/{article}', 'App\Http\Controllers\ArticlesController@edit')->name('blog.edit');
 Route::post('/article/update/{article}', 'App\Http\Controllers\ArticlesController@update');
 
 require __DIR__.'/auth.php';

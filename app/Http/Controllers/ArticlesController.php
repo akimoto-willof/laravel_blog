@@ -24,7 +24,10 @@ class ArticlesController extends Controller
 
     public function add()
     {
-        return Inertia::render('Add');
+        $articles = Article::all();
+        return Inertia::render('Add', [
+            'articles' => $articles,
+        ]);
     }
 
 
@@ -33,16 +36,17 @@ class ArticlesController extends Controller
         $articles = Article::create([
             'title' => $request->title,
             'body' => $request->body,
-            'user_id' => auth::id(),
+            'user_id' => $request->user_id,
             'slug' => $request->title,
         ]);
         return  Inertia::render('complete');
     }
 
 
-    public function edit(Article $article)
+    public function edit()
     {
-        return Inertia::render('edit', ['article' => $article]);
+        $articles = Article::all();
+        return Inertia::render('Edit', ['article' => $articles]);
     }
 
 

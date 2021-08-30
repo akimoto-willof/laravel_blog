@@ -6,6 +6,8 @@
 
                     <form @submit.prevent="submit">
                         <div class="grid grid-cols-1 gap-6">
+                            <!-- <input type="hidden" name="user_id" v-model="form.user_id"> -->
+                            <!-- :todo user-id表示できるように採番 -->
                             <label class="block">
                                 <span class="text-gray-700">Title</span>
                                 <input type="text" name="title" class="mt-1 block w-full" v-model="form.title">
@@ -34,10 +36,13 @@ export default {
     components: {
       BreezeResponsiveNavLink,
     },
+    props: {
+        users: Array,
+    },
     data() {
         return {
             form: this.$inertia.form({
-                user_id: '',
+                user_id: this.$attrs.articles.pop().id + 1,
                 title: '',
                 slug: '',
                 body: '',
@@ -48,6 +53,15 @@ export default {
         submit() {
             this.form.post(this.route('blog.create'))
         }
-    }
+    },
+    // computed: {
+    //     addId() {
+    //         if(this.users){
+    //             return this.users.user_id++
+    //         } else {
+    //             return 1
+    //         }
+    //     }
+    // }
 }
 </script>

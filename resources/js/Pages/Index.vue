@@ -16,12 +16,12 @@
                                 <td>{{ article.title }}</td>
                                 <td>{{ article.slug }}</td>
                                 <td>{{ article.body }}</td>
+                                <td><a :href="route('blog.edit')" :active="route().current('blog.edit')">編集</a></td>
+                                <!-- <td><a :href="route('blog.add')" :active="route().current('blog.add')">削除</a></td> -->
                             </tr>
                         </tbody>
                     </table>
-                    <BreezeResponsiveNavLink :href="route('blog.add')" :active="route().current('blog.add')">
-                        add blog
-                    </BreezeResponsiveNavLink>
+                    <BreezeResponsiveNavLink :href="route('blog.add')" :active="route().current('blog.add')">追加</BreezeResponsiveNavLink>
 
                 <a href="/article/add" as="button" class="text-sm text-gray-700">
                 </a>
